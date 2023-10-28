@@ -15,8 +15,16 @@ oem2.inf (original name hpwia_dj2300.inf) - scanner driver,
 oem3.inf (original name hpreststub.inf) - USB driver,  
 oem4.inf (original name hpwinusbstub.inf) - USB driver.  
 All these four drivers need to be exported to pre-prepared folders. Open command prompt and type:  
-`pnputil.exe /export-driver oem1.inf C:\HPDeskJet2320\1  
-pnputil.exe /export-driver oem2.inf C:\HPDeskJet2320\2  
-pnputil.exe /export-driver oem3.inf C:\HPDeskJet2320\3  
-pnputil.exe /export-driver oem4.inf C:\HPDeskJet2320\4`  
+`pnputil.exe /export-driver oem1.inf C:\HPDeskJet2320\1`  
+`pnputil.exe /export-driver oem2.inf C:\HPDeskJet2320\2`  
+`pnputil.exe /export-driver oem3.inf C:\HPDeskJet2320\3`  
+`pnputil.exe /export-driver oem4.inf C:\HPDeskJet2320\4`  
 Upon successful export, a message will appear:  
+![alt text](https://i5.imageban.ru/out/2023/06/14/94572d4b8a4b0b6f728d8dad0333ee31.jpg)  
+Almost everything is ready. Now this folder "C:\HPDeskJet2320" with exported drivers should be moved to Windows Server. On Windows Server, open a command prompt and type:  
+`pnputil.exe /add-driver "C:\HPDeskJet2320\1\hpygid31_v4.inf" /install`  
+`pnputil.exe /add-driver "C:\HPDeskJet2320\2\hpwia_dj2300.inf" /install`  
+`pnputil.exe /add-driver "C:\HPDeskJet2320\3\hpreststub.inf" /install`  
+`pnputil.exe /add-driver "C:\HPDeskJet2320\4\hpwinusbstub.inf" /install`  
+After the reboot, turn on the printer, connect it to the PC and wait 2 minutes. In the "Control Panel", in "Devices and Printers" the printer icon will appear. It is advisable to open the printer properties and on the "Ports" tab, make sure that the printer port is USB:  
+![alt text](https://i4.imageban.ru/out/2023/06/14/3ea5e34a77534cef4ece8f5f4e5c904a.jpg)
